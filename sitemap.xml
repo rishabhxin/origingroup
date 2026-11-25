@@ -18,4 +18,8 @@
     <loc>https://origingroup.agency/contact/</loc>
   </url>
 
-  </urlset>
+    <url>
+    <loc>https://origingroup.agency/sitemap-generator.html</loc>
+  </url>
+
+</urlset>

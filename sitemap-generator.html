@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<!-- Title -->
+	<title>Sitemap Generator | Origin Group</title>
+
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="title" content="Sitemap Generator | Origin Group">
+	<meta name="description" content="Free XML Sitemap Generator by Origin Group. Scan any website or paste URLs to generate, customize, copy, and download a valid sitemap.xml file.">
+	<meta name="keywords" content="XML Sitemap Generator, Free SEO Tool, Sitemap Creator, Origin Group Mumbai">
+
+	<!-- Mobile Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" href="/assets/img/ogfav.png" type="image/x-icon">
+	<link rel="icon" href="/assets/img/ogfav.png" type="image/x-icon">
+
+	<!-- Google fonts (https://fonts.google.com/) -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:wght@200..700&display=swap" rel="stylesheet">
+
+	<!-- Libs and Plugins CSS -->
+	<link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="assets/vendor/fancybox/css/fancybox.css">
+	<link rel="stylesheet" href="assets/vendor/swiper/css/swiper-bundle.min.css">
+
+	<!-- Master CSS -->
+	<link rel="stylesheet" href="assets/css/helper.css">
+	<link rel="stylesheet" href="assets/css/elements.css">
+	<link rel="stylesheet" href="assets/css/theme.css">
+
+	<!-- Dark style CSS -->
+	<link rel="stylesheet" href="assets/css/theme-dark.css">
+
+	<!-- Scoped Sitemap Generator Styles (respects both Light & Dark theme modes) -->
+	<style>
+		.og-tool-card {
+			border: 2px solid var(--tt-border-color, #16171a);
+			border-radius: 12px;
+			padding: 32px;
+			margin-bottom: 32px;
+			background-color: var(--tt-bg-color, transparent);
+		}
+
+		.og-tool-header-bar {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: center;
+			gap: 14px;
+			margin-bottom: 24px;
+		}
+
+		.og-tool-grid-2 {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 16px;
+			align-items: end;
+		}
+
+		.og-tool-grid-3 {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px;
+		}
+
+		.og-tool-actions {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			align-items: center;
+		}
+
+		.og-badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 6px 14px;
+			border-radius: 999px;
+			font-size: 13px;
+			border: 1px solid var(--tt-border-color, currentColor);
+		}
+
+		.og-status {
+			font-size: 14px;
+			margin-top: 12px;
+			min-height: 22px;
+			opacity: 0.9;
+		}
+
+		.og-status.is-error {
+			color: #dc2626;
+		}
+
+		body.tt-dark-mode-on .og-status.is-error {
+			color: #f87171;
+		}
+
+		.og-status.is-success {
+			color: #15803d;
+		}
+
+		body.tt-dark-mode-on .og-status.is-success {
+			color: #4ade80;
+		}
+
+		.og-url-table-wrap {
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			max-height: 380px;
+			overflow-y: auto;
+			border: 1px solid rgba(133, 133, 133, 0.35);
+			border-radius: 8px;
+		}
+
+		.og-url-table {
+			width: 100%;
+			border-collapse: collapse;
+			font-size: 14px;
+			min-width: 640px;
+		}
+
+		.og-url-table th,
+		.og-url-table td {
+			padding: 12px 14px;
+			text-align: left;
+			border-bottom: 1px solid rgba(133, 133, 133, 0.2);
+			vertical-align: middle;
+		}
+
+		.og-url-table th {
+			font-weight: 600;
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			opacity: 0.75;
+		}
+
+		.og-url-table select,
+		.og-url-table input[type="date"] {
+			background-color: var(--tt-bg-color, transparent);
+			color: var(--tt-text-color, inherit);
+			border: 1px solid rgba(133, 133, 133, 0.45);
+			border-radius: 6px;
+			padding: 6px 8px;
+			font-size: 13px;
+			width: 100%;
+			font-family: inherit;
+		}
+
+		.og-url-table option {
+			background-color: var(--tt-bg-color, #ffffff);
+			color: var(--tt-text-color, #16171a);
+		}
+
+		.og-remove-btn {
+			background: transparent;
+			border: 1px solid rgba(133, 133, 133, 0.45);
+			color: inherit;
+			width: 32px;
+			height: 32px;
+			border-radius: 6px;
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			transition: opacity 0.2s ease;
+		}
+
+		.og-remove-btn:hover {
+			opacity: 0.65;
+		}
+
+		.og-xml-output {
+			width: 100%;
+			min-height: 320px;
+			max-height: 480px;
+			padding: 20px;
+			border-radius: 8px;
+			border: 1px solid rgba(133, 133, 133, 0.4);
+			background-color: rgba(133, 133, 133, 0.08);
+			color: var(--tt-text-color, inherit);
+			font-family: 'Cascadia Mono', monospace;
+			font-size: 13px;
+			line-height: 1.6;
+			resize: vertical;
+			white-space: pre;
+			overflow: auto;
+		}
+
+		/* Tablet */
+		@media (max-width: 991px) {
+			.og-tool-card {
+				padding: 24px;
+			}
+			.og-tool-grid-3 {
+				grid-template-columns: repeat(2, 1fr);
+			}
+		}
+
+		/* Phone */
+		@media (max-width: 767px) {
+			.og-tool-card {
+				padding: 18px;
+			}
+			.og-tool-grid-3,
+			.og-tool-grid-2 {
+				grid-template-columns: 1fr;
+			}
+			.og-tool-grid-2 .tt-btn,
+			.og-tool-actions .tt-btn {
+				width: 100%;
+				text-align: center;
+				justify-content: center;
+			}
+			.og-xml-output {
+				font-size: 12px;
+				min-height: 260px;
+				padding: 14px;
+			}
+		}
+	</style>
+
+</head>
+
+
+<body id="body" class="tt-transition tt-magic-cursor tt-smooth-scroll"
+	style="--tt-bg-pattern: url('../img/bg-pattern.png');">
+
+	<main id="body-inner">
+
+		<!-- Begin page transition (do not remove!!!) -->
+		<div id="tt-page-transition">
+			<div class="tt-ptr-overlay-top"></div>
+			<div class="tt-ptr-overlay-bottom"></div>
+			<div class="tt-ptr-preloader">
+				<div class="tt-ptr-prel-content">
+					<img src="assets/img/logo/OG Logo W.png" class="tt-ptr-prel-image" alt="Logo">
+				</div>
+			</div>
+		</div>
+		<!-- End page transition -->
+
+		<!-- Begin magic cursor -->
+		<div id="magic-cursor">
+			<div id="ball"></div>
+		</div>
+		<!-- End magic cursor -->
+
+
+		<div id="tt-content-wrap">
+
+			<header id="tt-header" class="tt-header-alter tt-header-scroll tt-header-filled">
+				<div class="tt-header-inner">
+
+					<div class="tt-header-col tt-header-col-left">
+						<div class="tt-logo">
+							<a href="index.html" class="tt-magnetic-item">
+								<img src="assets/img/logo/OG Logo W.png" class="tt-logo-light" alt="Logo">
+								<img src="assets/img/logo/OG Logo B.png" class="tt-logo-dark" alt="Logo">
+							</a>
+						</div>
+					</div>
+
+					<div class="tt-header-col tt-header-col-center">
+						<nav class="tt-main-menu tt-m-menu-center">
+							<div class="tt-main-menu-holder">
+								<div class="tt-main-menu-inner">
+									<div class="tt-main-menu-content">
+
+										<ul class="tt-main-menu-list">
+											<li><a href="/index.html">Home</a></li>
+											<li><a href="/who-we-are.html">Who we are</a></li>
+											<li><a href="/services.html">Services</a></li>
+											<li><a href="/portfolio.html">Portfolio</a></li>
+											<li class="tt-submenu-wrap tt-submenu-master active">
+												<div class="tt-submenu-trigger">
+													<a href="#">Tools</a>
+												</div>
+												<div class="tt-submenu">
+													<ul class="tt-submenu-list">
+														<li class="active"><a href="/sitemap-generator.html">Sitemap Generator</a></li>
+													</ul>
+												</div>
+											</li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+						</nav>
+					</div>
+
+					<div class="tt-header-col tt-header-col-right">
+
+						<!-- Begin mobile menu toggle button -->
+						<div id="tt-m-menu-toggle-btn-wrap">
+							<div class="tt-m-menu-toggle-btn-text">
+								<span class="tt-m-menu-text-menu">Menu</span>
+								<span class="tt-m-menu-text-close">Close</span>
+							</div>
+							<div class="tt-m-menu-toggle-btn-holder">
+								<a href="#" class="tt-m-menu-toggle-btn"><span></span></a>
+							</div>
+						</div>
+						<!-- End mobile menu toggle button -->
+
+						<!-- Begin header button -->
+						<a href="/contact.html" class="tt-btn tt-btn-secondary hide-from-xlg tt-magnetic-item">
+							<span data-hover="Let's Talk">Collaborate</span>
+						</a>
+						<!-- End header button -->
+
+						<!-- Begin style switch button -->
+						<div class="tt-style-switch">
+							<div class="tt-style-switch-inner tt-magnetic-item">
+								<div class="tt-stsw-light">
+									<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M3.32031 11.6835C3.32031 16.6541 7.34975 20.6835 12.3203 20.6835C16.1075 20.6835 19.3483 18.3443 20.6768 15.032C19.6402 15.4486 18.5059 15.6834 17.3203 15.6834C12.3497 15.6834 8.32031 11.654 8.32031 6.68342C8.32031 5.50338 8.55165 4.36259 8.96453 3.32996C5.65605 4.66028 3.32031 7.89912 3.32031 11.6835Z"
+											stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+									</svg>
+								</div>
+								<div class="tt-stsw-dark">
+									<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<circle cx="12" cy="12" r="5" stroke-width="2"></circle>
+										<path d="M12 2V4" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M12 20V22" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M4 12L2 12" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M22 12L20 12" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M19.7778 4.22266L17.5558 6.25424" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M4.22217 4.22266L6.44418 6.25424" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M6.44434 17.5557L4.22211 19.7779" stroke-width="2" stroke-linecap="round"></path>
+										<path d="M19.7778 19.7773L17.5558 17.5551" stroke-width="2" stroke-linecap="round"></path>
+									</svg>
+								</div>
+							</div>
+						</div>
+						<!-- End style switch button -->
+
+					</div>
+				</div>
+			</header>
+			<!-- End header -->
+
+			<div id="page-header"
+				class="ph-full ph-full-m ph-center ph-cap-xxxlg ph-image-parallax ph-caption-parallax">
+
+				<div class="page-header-inner">
+					<div class="ph-caption">
+						<div class="ph-caption-inner">
+							<h2 class="ph-caption-subtitle">( Free SEO Tool )</h2>
+							<h1 class="ph-caption-title">Sitemap Generator</h1>
+							<div class="ph-caption-description max-width-700">
+								Scan a website or paste your URLs to generate, customize, copy, and download a valid <strong>sitemap.xml</strong> file right in your browser.
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ph-social">
+					<div class="tt-social-buttons">
+						<ul>
+							<li><a href="https://www.instagram.com/origingroupin/" class="tt-magnetic-item"
+									target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+							<li><a href="https://www.linkedin.com/showcase/origingroupin/" class="tt-magnetic-item"
+									target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="tt-scroll-down">
+					<a href="#tt-page-content" class="tt-sd-inner tt-magnetic-item" data-offset="0">
+						<div class="tt-sd-arrow">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+								<path
+									d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z">
+								</path>
+							</svg>
+						</div>
+					</a>
+				</div>
+
+			</div>
+			<!-- End page header -->
+
+			<div id="tt-page-content">
+
+				<div class="tt-section padding-top-40 padding-bottom-120">
+					<div class="tt-section-inner tt-wrap">
+
+						<!-- Step 1: Add URLs -->
+						<div class="og-tool-card tt-form tt-form-lg">
+							<div class="og-tool-header-bar">
+								<div class="tt-heading tt-heading-sm margin-bottom-0">
+									<h2 class="tt-heading-title">1. Add Your Website URLs</h2>
+								</div>
+								<span class="og-badge">100% Browser-Based</span>
+							</div>
+
+							<!-- Auto-Scan -->
+							<div class="tt-form-group">
+								<label for="scan-url">Website URL (Auto-Scan Internal Links)</label>
+								<div class="og-tool-grid-2">
+									<input class="tt-form-control" id="scan-url" type="url" placeholder="https://origingroup.agency">
+									<button type="button" id="btn-scan-site" class="tt-btn tt-btn-secondary tt-magnetic-item">
+										<span data-hover="Scan Links">Scan Links</span>
+									</button>
+								</div>
+								<div id="scan-status" class="og-status" aria-live="polite"></div>
+							</div>
+
+							<!-- Bulk Paste -->
+							<div class="tt-form-group margin-top-30">
+								<label for="bulk-urls">Or Paste URLs / Paths (one per line)</label>
+								<textarea class="tt-form-control" id="bulk-urls" rows="5" placeholder="https://example.com/&#10;https://example.com/who-we-are.html&#10;/services.html&#10;/portfolio.html"></textarea>
+							</div>
+
+							<!-- Global Defaults -->
+							<div class="og-tool-grid-3 margin-top-20">
+								<div class="tt-form-group">
+									<label for="default-lastmod">Last Modified</label>
+									<input class="tt-form-control" id="default-lastmod" type="date">
+								</div>
+
+								<div class="tt-form-group">
+									<label for="default-changefreq">Change Frequency</label>
+									<select class="tt-form-control" id="default-changefreq">
+										<option value="weekly" selected>Weekly</option>
+										<option value="daily">Daily</option>
+										<option value="monthly">Monthly</option>
+										<option value="yearly">Yearly</option>
+										<option value="always">Always</option>
+										<option value="hourly">Hourly</option>
+										<option value="never">Never</option>
+									</select>
+								</div>
+
+								<div class="tt-form-group">
+									<label for="default-priority">Default Priority</label>
+									<select class="tt-form-control" id="default-priority">
+										<option value="1.0">1.0 (Highest)</option>
+										<option value="0.8" selected>0.8 (High)</option>
+										<option value="0.6">0.6 (Medium)</option>
+										<option value="0.5">0.5 (Normal)</option>
+										<option value="0.3">0.3 (Low)</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="og-tool-actions margin-top-30">
+								<button type="button" id="btn-add-bulk" class="tt-btn tt-btn-secondary tt-magnetic-item">
+									<span data-hover="Add to Sitemap">Add to Sitemap</span>
+								</button>
+								<button type="button" id="btn-clear-all" class="tt-btn tt-btn-outline tt-magnetic-item">
+									<span data-hover="Clear All">Clear All</span>
+								</button>
+							</div>
+						</div>
+
+						<!-- Step 2: Review & Customize URLs -->
+						<div class="og-tool-card">
+							<div class="og-tool-header-bar">
+								<div class="tt-heading tt-heading-sm margin-bottom-0">
+									<h2 class="tt-heading-title">2. Review &amp; Customize URLs</h2>
+								</div>
+								<span class="og-badge"><span id="url-count">0</span>&nbsp;URLs</span>
+							</div>
+
+							<div class="og-url-table-wrap">
+								<table class="og-url-table">
+									<thead>
+										<tr>
+											<th style="width: 46%;">URL</th>
+											<th style="width: 19%;">Last Mod</th>
+											<th style="width: 16%;">Frequency</th>
+											<th style="width: 13%;">Priority</th>
+											<th style="width: 6%;"></th>
+										</tr>
+									</thead>
+									<tbody id="url-table-body">
+										<tr>
+											<td colspan="5" style="text-align: center; opacity: 0.65; padding: 28px;">
+												No URLs added yet. Scan a website or paste URLs above.
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!-- Step 3: Generated XML Output -->
+						<div class="og-tool-card">
+							<div class="og-tool-header-bar">
+								<div class="tt-heading tt-heading-sm margin-bottom-0">
+									<h2 class="tt-heading-title">3. Generated sitemap.xml</h2>
+								</div>
+								<div class="og-tool-actions">
+									<button type="button" id="btn-copy-xml" class="tt-btn tt-btn-outline tt-magnetic-item">
+										<span data-hover="Copy XML">Copy XML</span>
+									</button>
+									<button type="button" id="btn-download-xml" class="tt-btn tt-btn-secondary tt-magnetic-item">
+										<span data-hover="Download .xml">Download .xml</span>
+									</button>
+								</div>
+							</div>
+
+							<textarea id="xml-output" class="og-xml-output" readonly aria-label="Generated XML Sitemap"></textarea>
+							<div id="output-status" class="og-status" aria-live="polite"></div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<!-- End page content -->
+
+
+			<!-- Begin tt-footer -->
+			<footer id="tt-footer" class="border-top">
+				<div class="tt-footer-inner">
+
+					<div class="tt-row">
+						<div class="tt-col-xxl-6 tt-col-xl-12">
+							<div class="tt-footer-widget">
+								<h2>Ready to push<br> beyond limits?</h2>
+								<a href="/contact.html" class="tt-btn tt-btn-secondary tt-magnetic-item">
+									<span data-hover="Connect">Collaborate</span>
+									<span class="tt-btn-icon"><i class="fa-regular fa-envelope"></i></span>
+								</a>
+							</div>
+						</div>
+
+						<div class="tt-col-xxl-2 tt-col-md-4">
+							<div class="tt-footer-widget">
+								<h3 class="tt-footer-widget-heading">Menu</h3>
+								<ul class="tt-footer-widget-list">
+									<li><a href="/index.html" class="tt-link">Home</a></li>
+									<li><a href="/who-we-are.html" class="tt-link">Who we are</a></li>
+									<li><a href="/services.html" class="tt-link">Services</a></li>
+									<li><a href="/portfolio.html" class="tt-link">Portfolio</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="tt-col-xxl-2 tt-col-md-4">
+							<div class="tt-footer-widget">
+								<h3 class="tt-footer-widget-heading">More</h3>
+								<ul class="tt-footer-widget-list">
+									<li><a href="/sitemap-generator.html" class="tt-link">Sitemap Generator</a></li>
+									<li><a href="/contact.html" class="tt-link">Contact</a></li>
+									<li><a href="https://qorezen.in/" target="_blank" class="tt-link">Qorezen</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="tt-col-xxl-2 tt-col-md-4">
+							<div class="tt-footer-widget">
+								<h3 class="tt-footer-widget-heading">Contact</h3>
+								<ul class="tt-footer-widget-list">
+									<li><a href="mailto:origingroupinq@gmail.com" class="tt-link">origingroupinq@gmail.com</a></li>
+									<li><a href="tel:+918779620308" class="tt-link"> +91 87796 20308</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="tt-footer-bottom">
+						<div class="tt-row tt-sm-row-reverse">
+							<div class="tt-col-md-4 tt-align-items-md-end tt-justify-content-md-end">
+								<div class="tt-footer-widget">
+									<div class="tt-social-buttons tt-sbtn-inline tt-sbtn-filled">
+										<ul>
+											<li><a href="https://www.instagram.com/origingroupin/" class="tt-magnetic-item" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+											<li><a href="https://www.linkedin.com/showcase/origingroupin/" class="tt-magnetic-item" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="tt-col-md-4 tt-align-items-md-end tt-justify-content-md-center">
+								<div class="tt-footer-widget text-center-to-md">
+									Made with <i class="fa-regular fa-heart"></i>
+								</div>
+							</div>
+
+							<div class="tt-col-md-4 tt-align-items-md-end">
+								<div class="tt-footer-widget">
+									<div class="tt-footer-copyright">
+										©<span class="tt-copyright-year"></span><a href="/index.html" class="tt-link" target="_blank" rel="nofollow noopener">Origin Group</a><br>
+										All Rights Reserved
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</footer>
+			<!-- End tt-footer -->
+
+		</div>
+		<!-- End content wrap -->
+
+		<!-- Begin scroll to top button -->
+		<div class="tt-scroll-to-top" data-top-offset="800" data-bottom-offset="200">
+			<a href="#" class="tt-stt-inner tt-magnetic-item">
+				<div class="tt-stt-arrow">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+						<path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"></path>
+					</svg>
+				</div>
+			</a>
+		</div>
+		<!-- End scroll to top button -->
+
+	</main>
+
+	<!-- Core JS -->
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="assets/vendor/gsap/gsap.min.js"></script>
+	<script src="assets/vendor/gsap/ScrollSmoother.min.js"></script>
+	<script src="assets/vendor/gsap/ScrollToPlugin.min.js"></script>
+	<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+	<script src="assets/vendor/gsap/Flip.min.js"></script>
+	<script src="assets/vendor/gsap/SplitText.min.js"></script>
+	<script src="assets/vendor/fancybox/js/fancybox.umd.js"></script>
+	<script src="assets/vendor/swiper/js/swiper-bundle.min.js"></script>
+
+	<!-- Master JS -->
+	<script src="assets/js/elements.js"></script>
+	<script src="assets/js/theme.js"></script>
+
+	<!-- Sitemap Generator Logic -->
+	<script>
+		(function () {
+			const scanUrlInput = document.getElementById('scan-url');
+			const bulkUrlsInput = document.getElementById('bulk-urls');
+			const defaultLastmodInput = document.getElementById('default-lastmod');
+			const defaultFreqInput = document.getElementById('default-changefreq');
+			const defaultPriorityInput = document.getElementById('default-priority');
+
+			const btnScan = document.getElementById('btn-scan-site');
+			const btnAddBulk = document.getElementById('btn-add-bulk');
+			const btnClearAll = document.getElementById('btn-clear-all');
+			const btnCopy = document.getElementById('btn-copy-xml');
+			const btnDownload = document.getElementById('btn-download-xml');
+
+			const scanStatus = document.getElementById('scan-status');
+			const outputStatus = document.getElementById('output-status');
+			const urlCountEl = document.getElementById('url-count');
+			const tableBody = document.getElementById('url-table-body');
+			const xmlOutput = document.getElementById('xml-output');
+
+			const today = new Date().toISOString().split('T')[0];
+			defaultLastmodInput.value = today;
+
+			let entries = [];
+
+			function setStatus(el, msg, type) {
+				el.textContent = msg;
+				el.className = 'og-status' + (type ? ' is-' + type : '');
+			}
+
+			function escapeXml(str) {
+				return String(str)
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
+					.replace(/"/g, '&quot;')
+					.replace(/'/g, '&apos;');
+			}
+
+			function normalizeUrl(raw, baseOrigin) {
+				const trimmed = raw.trim();
+				if (!trimmed) return null;
+				try {
+					if (/^https?:\/\//i.test(trimmed)) {
+						const u = new URL(trimmed);
+						u.hash = '';
+						return u.href;
+					}
+					if (baseOrigin) {
+						const u = new URL(trimmed, baseOrigin);
+						u.hash = '';
+						return u.href;
+					}
+					const u = new URL('https://' + trimmed);
+					u.hash = '';
+					return u.href;
+				} catch {
+					return null;
+				}
+			}
+
+			function addUrls(urlList, baseOrigin) {
+				const existingSet = new Set(entries.map(e => e.loc));
+				let added = 0;
+
+				urlList.forEach(raw => {
+					const loc = normalizeUrl(raw, baseOrigin);
+					if (!loc || existingSet.has(loc)) return;
+					existingSet.add(loc);
+
+					let isHome = false;
+					try {
+						const parsed = new URL(loc);
+						isHome = parsed.pathname === '/' || parsed.pathname === '/index.html';
+					} catch {}
+
+					entries.push({
+						loc,
+						lastmod: defaultLastmodInput.value || today,
+						changefreq: defaultFreqInput.value,
+						priority: isHome ? '1.0' : defaultPriorityInput.value
+					});
+					added++;
+				});
+
+				render();
+				return added;
+			}
+
+			function generateXml() {
+				if (entries.length === 0) {
+					return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <!-- Add URLs above to generate your sitemap -->\n</urlset>';
+				}
+
+				const lines = [
+					'<?xml version="1.0" encoding="UTF-8"?>',
+					'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+				];
+
+				entries.forEach(item => {
+					lines.push('  <url>');
+					lines.push('    <loc>' + escapeXml(item.loc) + '</loc>');
+					if (item.lastmod) lines.push('    <lastmod>' + escapeXml(item.lastmod) + '</lastmod>');
+					if (item.changefreq) lines.push('    <changefreq>' + escapeXml(item.changefreq) + '</changefreq>');
+					if (item.priority) lines.push('    <priority>' + escapeXml(item.priority) + '</priority>');
+					lines.push('  </url>');
+				});
+
+				lines.push('</urlset>');
+				return lines.join('\n');
+			}
+
+			function render() {
+				urlCountEl.textContent = entries.length;
+				xmlOutput.value = generateXml();
+
+				if (entries.length === 0) {
+					tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;opacity:0.65;padding:28px;">No URLs added yet. Scan a website or paste URLs above.</td></tr>';
+					return;
+				}
+
+				const freqOptions = ['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'];
+				const prioOptions = ['1.0', '0.9', '0.8', '0.7', '0.6', '0.5', '0.4', '0.3', '0.2', '0.1'];
+
+				tableBody.innerHTML = entries.map((item, idx) => `
+					<tr>
+						<td style="word-break: break-all;">${escapeXml(item.loc)}</td>
+						<td><input type="date" value="${item.lastmod}" data-idx="${idx}" data-field="lastmod"></td>
+						<td>
+							<select data-idx="${idx}" data-field="changefreq">
+								${freqOptions.map(f => `<option value="${f}" ${item.changefreq === f ? 'selected' : ''}>${f}</option>`).join('')}
+							</select>
+						</td>
+						<td>
+							<select data-idx="${idx}" data-field="priority">
+								${prioOptions.map(p => `<option value="${p}" ${item.priority === p ? 'selected' : ''}>${p}</option>`).join('')}
+							</select>
+						</td>
+						<td>
+							<button type="button" class="og-remove-btn" data-remove="${idx}" title="Remove URL" aria-label="Remove URL">
+								<i class="fa-solid fa-xmark"></i>
+							</button>
+						</td>
+					</tr>
+				`).join('');
+			}
+
+			tableBody.addEventListener('change', function (e) {
+				const idx = e.target.getAttribute('data-idx');
+				const field = e.target.getAttribute('data-field');
+				if (idx !== null && field && entries[idx]) {
+					entries[idx][field] = e.target.value;
+					xmlOutput.value = generateXml();
+				}
+			});
+
+			tableBody.addEventListener('click', function (e) {
+				const btn = e.target.closest('[data-remove]');
+				if (!btn) return;
+				const idx = parseInt(btn.getAttribute('data-remove'), 10);
+				entries.splice(idx, 1);
+				render();
+			});
+
+			btnAddBulk.addEventListener('click', function () {
+				const rawLines = bulkUrlsInput.value.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+				if (rawLines.length === 0) {
+					setStatus(scanStatus, 'Please paste at least one URL or path.', 'error');
+					return;
+				}
+
+				let baseOrigin = '';
+				if (scanUrlInput.value.trim()) {
+					const normalizedBase = normalizeUrl(scanUrlInput.value.trim());
+					if (normalizedBase) baseOrigin = new URL(normalizedBase).origin;
+				}
+
+				const added = addUrls(rawLines, baseOrigin);
+				setStatus(scanStatus, `Added ${added} new URL(s) to your sitemap.`, 'success');
+				bulkUrlsInput.value = '';
+			});
+
+			async function fetchHtmlWithFallback(targetUrl) {
+				const proxies = [
+					'https://api.allorigins.win/raw?url=' + encodeURIComponent(targetUrl),
+					'https://corsproxy.io/?' + encodeURIComponent(targetUrl)
+				];
+				// Try direct same-origin fetch first if scanning current host
+				if (new URL(targetUrl).origin === window.location.origin) {
+					proxies.unshift(targetUrl);
+				}
+				for (const endpoint of proxies) {
+					try {
+						const res = await fetch(endpoint);
+						if (res.ok) {
+							const text = await res.text();
+							if (text && text.includes('<')) return text;
+						}
+					} catch {}
+				}
+				throw new Error('Unable to fetch target website.');
+			}
+
+			btnScan.addEventListener('click', async function () {
+				const targetUrl = normalizeUrl(scanUrlInput.value.trim());
+				if (!targetUrl) {
+					setStatus(scanStatus, 'Please enter a valid website URL (e.g. https://origingroup.agency).', 'error');
+					return;
+				}
+
+				const origin = new URL(targetUrl).origin;
+				setStatus(scanStatus, 'Scanning homepage for internal links...', '');
+				btnScan.disabled = true;
+
+				try {
+					const html = await fetchHtmlWithFallback(targetUrl);
+					const doc = new DOMParser().parseFromString(html, 'text/html');
+					const anchors = Array.from(doc.querySelectorAll('a[href]'));
+					const found = [targetUrl];
+
+					anchors.forEach(a => {
+						const href = (a.getAttribute('href') || '').trim();
+						if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+						try {
+							const resolved = new URL(href, targetUrl);
+							if (resolved.origin === origin) {
+								resolved.hash = '';
+								found.push(resolved.href);
+							}
+						} catch {}
+					});
+
+					const added = addUrls(found, origin);
+					setStatus(scanStatus, `Scan complete — added ${added} internal URL(s) from ${origin}.`, 'success');
+				} catch {
+					addUrls([targetUrl], origin);
+					setStatus(scanStatus, 'Auto-scan was blocked by the target site. Added the homepage—paste any extra URLs below.', 'error');
+				} finally {
+					btnScan.disabled = false;
+				}
+			});
+
+			btnClearAll.addEventListener('click', function () {
+				entries = [];
+				render();
+				setStatus(scanStatus, 'Cleared all URLs.', '');
+				setStatus(outputStatus, '', '');
+			});
+
+			btnCopy.addEventListener('click', async function () {
+				if (entries.length === 0) {
+					setStatus(outputStatus, 'Add at least one URL before copying.', 'error');
+					return;
+				}
+				try {
+					await navigator.clipboard.writeText(xmlOutput.value);
+					setStatus(outputStatus, 'sitemap.xml copied to clipboard!', 'success');
+				} catch {
+					xmlOutput.select();
+					document.execCommand('copy');
+					setStatus(outputStatus, 'sitemap.xml copied to clipboard!', 'success');
+				}
+			});
+
+			btnDownload.addEventListener('click', function () {
+				if (entries.length === 0) {
+					setStatus(outputStatus, 'Add at least one URL before downloading.', 'error');
+					return;
+				}
+				const blob = new Blob([xmlOutput.value], { type: 'application/xml;charset=utf-8' });
+				const url = URL.createObjectURL(blob);
+				const a = document.createElement('a');
+				a.href = url;
+				a.download = 'sitemap.xml';
+				document.body.appendChild(a);
+				a.click();
+				document.body.removeChild(a);
+				URL.revokeObjectURL(url);
+				setStatus(outputStatus, 'Downloaded sitemap.xml!', 'success');
+			});
+
+			render();
+		})();
+	</script>
+
+</body>
+
+</html>
